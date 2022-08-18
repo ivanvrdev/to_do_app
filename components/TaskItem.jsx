@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import Checkbox from 'expo-checkbox'
 
 import {theme} from '../theme'
@@ -26,7 +26,9 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: 10
+        marginBottom: 10,
+        marginHorizontal: 10,
+        width: Dimensions.get('window').width - 20
     },
     textSize: {
         fontSize: 20

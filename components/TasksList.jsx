@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FlatList } from 'react-native'
 
 import TaskItem from './TaskItem'
 
-import { tasks } from '../data'
+import { TasksContext } from '../context/TasksContext' 
 
 const TasksList = () => {
+
+  const { tasksList } = useContext(TasksContext)
+
   return (
     <FlatList 
-        data={tasks}
+        data={tasksList}
         renderItem={({item: task}) =>
             <TaskItem {...task}/> 
         }
