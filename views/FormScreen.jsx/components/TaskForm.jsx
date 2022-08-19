@@ -15,6 +15,9 @@ const TaskForm = ({navigation}) => {
     const [ inputStyle, setInputStyle ] = useState(initialInputStyle)
     const [ error, setError] = useState(null)
 
+    const [buttonText, setButtonText] = useState('agregar tarea')
+    const [disabledButton, setDisabledButton] = useState(false)
+
     const handleChange = (text) =>{
         if(inputStyle.length > 1 && description !== '') {
             setInputStyle(initialInputStyle)
@@ -23,18 +26,33 @@ const TaskForm = ({navigation}) => {
         setDescription(text)
     }
 
-    const handleSubmit = () =>{
+    const handleSubmit = async () =>{
         if(description === '') {
             setInputStyle(prev => [...prev, styles.error])
             setError('El campo no debe estar vacío')
             return
         }
 
-        setTasksList(prev => [...prev, {
-            id: (tasksList.length + 1),
-            title: description,
-            completed: false
-        }])
+        setDisabledButton(true)
+        setButtonText('Enviando...')
+
+        const response = await fetch('https://jsonplaceholder.typicode.com/todos', {
+            method: 'POST',
+            body: JSON.stringify({
+                title: description,
+                completed: false,
+                userId: 1,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+        })
+
+        const newTask = await response.json()
+
+        newTask.id = tasksList.length + 1
+
+        setTasksList(prev => [...prev, newTask])
         navigation.navigate('list')
     }
 
@@ -47,7 +65,11 @@ const TaskForm = ({navigation}) => {
                 onChangeText={handleChange}
             />
             {error && <Text style={styles.errorAlert}>{error}</Text>}
-            <Button title='Agregar tarea' onPress={handleSubmit}/>
+            <Button 
+                title={buttonText}
+                disabled={disabledButton}
+                onPress={handleSubmit}
+            />
         </View>
     )
 }

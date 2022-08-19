@@ -1,4 +1,8 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions, StatusBar } from "react-native";
+
+const screenHeight = Dimensions. get('screen'). height;
+const windowHeight = Dimensions. get('window'). height;
+const navbarHeight = screenHeight - windowHeight
 
 export const grid = StyleSheet.create({
     screen: {
@@ -6,7 +10,8 @@ export const grid = StyleSheet.create({
         backgroundColor: '#fff',
     },
     container: {
-        marginHorizontal: 10
+        marginHorizontal: 10,
+        marginBottom: navbarHeight
     }
 })
 

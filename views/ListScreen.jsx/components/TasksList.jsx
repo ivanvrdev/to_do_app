@@ -1,17 +1,17 @@
 import React, { useContext } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, View } from 'react-native'
 
 import TaskItem from './TaskItem'
 
 import { TasksContext } from '../../../context/TasksContext' 
 
-// import { useGetTasks } from '../hooks/tasksHooks'
+// import { useGetTasks } from '../../../hooks/tasksHooks'
 
 const TasksList = () => {
 
   const { tasksList } = useContext(TasksContext)
 
-  // const tasks = useGetTasks('1')
+  // const tasksList = useGetTasks('1')
 
   return (
     <>
