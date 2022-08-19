@@ -1,35 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
-import Constants from 'expo-constants';
-import TasksList from './components/TasksList';
-import TaskForm from './components/TaskForm';
-
+import { NavigationContainer } from '@react-navigation/native';
 import { TasksContextProvider } from './context/TasksContext';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import ListScreen from './views/ListScreen.jsx/index.jsx';
+import FormScreen from './views/FormScreen.jsx';
+
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
-    <TasksContextProvider>
-      <View style={styles.container}>
-        <Text style={styles.header}>Lista de tareas</Text>
-        <TaskForm />
-        <TasksList />
-        <StatusBar style="auto" />
-      </View>
-    </TasksContextProvider>
+    <NavigationContainer>
+      <TasksContextProvider>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name='list'
+            component={ListScreen}
+            options={{title: 'Tareas'}}
+          />
+          <Stack.Screen 
+            name='form'
+            component={FormScreen}
+            options={{title: 'Agregar tarea'}}
+          />
+        </Stack.Navigator>
+      </TasksContextProvider>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    marginTop: Constants.statusBarHeight
-    // justifyContent: 'center',
-  },
-  header: {
-    fontWeight: 'bold',
-    fontSize: 30
-  }
-});

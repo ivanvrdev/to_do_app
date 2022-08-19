@@ -1,9 +1,13 @@
 import { createContext, useState } from 'react';
-import { tasks } from '../data';
+// import { useGetTasks} from '../hooks/tasksHooks'
+
+import { tasks } from '../data'
 
 export const TasksContext = createContext(null)
 
 export const TasksContextProvider = ({children}) =>{
+  // const tasks = useGetTasks('1')
+
   const [tasksList, setTasksList ] = useState(tasks)
 
   return (

@@ -1,27 +1,27 @@
 export const tasks = [
     {
         id: 1,
-        description: 'Crear una app con expo',
+        title: 'Crear una app con expo',
         completed: true
     },
     {
         id: 2,
-        description: 'Listar tareas',
+        title: 'Listar tareas',
         completed: true
     },
     {
         id: 3,
-        description: 'Agregar tareas',
+        title: 'Agregar tareas',
         completed: false
     },
     {
         id: 4,
-        description: 'Editar tareas',
+        title: 'Editar tareas',
         completed: false
     },
     {
         id: 5,
-        description: 'Eliminar tareas',
+        title: 'Eliminar tareas',
         completed: false
     },
 ]
